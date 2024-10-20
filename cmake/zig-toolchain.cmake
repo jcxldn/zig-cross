@@ -25,14 +25,15 @@ endif()
 set(CMAKE_SYSTEM_VERSION 1)
 set(CMAKE_SYSTEM_PROCESSOR ${ZIG_ARCH})
 
-set(CMAKE_C_COMPILER "zig" cc -target ${ZIG_TARGET})
-set(CMAKE_CXX_COMPILER "zig" c++ -target ${ZIG_TARGET})
-
 if(WIN32)
     set(SCRIPT_SUFFIX ".cmd")
 else()
     set(SCRIPT_SUFFIX ".sh")
 endif()
+
+set(CMAKE_C_COMPILER "${CMAKE_CURRENT_LIST_DIR}/zig-cc${SCRIPT_SUFFIX}")
+set(CMAKE_CXX_COMPILER "${CMAKE_CURRENT_LIST_DIR}/zig-cxx${SCRIPT_SUFFIX}")
+
 
 # This is working (thanks to Simon for finding this trick)
 set(CMAKE_AR "${CMAKE_CURRENT_LIST_DIR}/zig-ar${SCRIPT_SUFFIX}")
